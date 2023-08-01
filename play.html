@@ -20,8 +20,14 @@
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
     var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
+        results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function getBase64Parameter() {
+    var url = window.location.href;
+    var encodedString = url.substr(url.indexOf("?=") + 2);
+    return encodedString;
 }
 
 var getID = getParameterByName('id');
@@ -29,55 +35,60 @@ var currentURL = window.location.href;
 
 if (!currentURL.startsWith("https://bilbojuan8.github.io/nodvix.github.io/play.html?id=") && !currentURL.startsWith("https://starpluseventss.blogspot.com/p/embedd.html?=")) {
     window.location.href = "https://twitter.com/nodoapps";
-} else if (getID != "") {
-    var playerInstance = jwplayer("player");
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://api.codetabs.com/v1/proxy/?quest=https://fulldeportes.live/vixplus/' + getID + '.json');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            var sources = [];
+} else if (getID === "" && getBase64Parameter() === "") {
+    window.location.href = "https://twitter.com/nodoapps";
+} else {
+    var decodedID = getID || atob(getBase64Parameter());
 
-            if (data.mpd_url && data.mpd_url !== "no disponible") {
-                sources.push({
-                    "default": false,
-                    "file": data.mpd_url,
-                    "label": "0",
-                    "type": "mpd",
-                    "drm": {
-                        "widevine": {
-                            "url": data.license_url
+    if (decodedID) {
+        var playerInstance = jwplayer("player");
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.codetabs.com/v1/proxy/?quest=https://fulldeportes.live/vixplus/' + decodedID + '.json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                var sources = [];
+
+                if (data.mpd_url && data.mpd_url !== "no disponible") {
+                    sources.push({
+                        "default": false,
+                        "file": data.mpd_url,
+                        "label": "0",
+                        "type": "mpd",
+                        "drm": {
+                            "widevine": {
+                                "url": data.license_url
+                            }
                         }
-                    }
+                    });
+                }
+
+                if (data.m3u8_url) {
+                    sources.push({
+                        "default": true,
+                        "file": data.m3u8_url,
+                        "type": "hls"
+                    });
+                }
+
+                playerInstance.setup({
+                    playlist: [{
+                        "title": "AdrenalinaGol | Twitter: @nodoapps",
+                        "description": "https://bit.ly/adrenalinagolapp",
+                        "image": data.img,
+                        "sources": sources
+                    }],
+                    width: "100%",
+                    height: "100%",
+                    aspectratio: "",
+                    autostart: false,
+                    cast: {},
                 });
             }
-
-            if (data.m3u8_url) {
-                sources.push({
-                    "default": true,
-                    "file": data.m3u8_url,
-                    "type": "hls"
-                });
-            }
-
-            playerInstance.setup({
-                playlist: [{
-                    "title": "AdrenalinaGol | Twitter: @nodoapps",
-                    "description": "https://bit.ly/adrenalinagolapp",
-                    "image": data.img,
-                    "sources": sources
-                }],
-                width: "100%",
-                height: "100%",
-                aspectratio: "",
-                autostart: false,
-                cast: {},
-            });
-        }
-    };
-    xhr.send();
+        };
+        xhr.send();
+    }
 }
-
             </script>
 </body>
 </html>
