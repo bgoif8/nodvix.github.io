@@ -25,8 +25,9 @@ function getParameterByName(name) {
 }
 
 var getID = getParameterByName('id');
+var currentURL = window.location.href;
 
-if (!window.location.href.startsWith("https://bilbojuan8.github.io/nodvix.github.io/play.html?id=")) {
+if (!currentURL.startsWith("https://bilbojuan8.github.io/nodvix.github.io/play.html?id=") && !currentURL.startsWith("https://starpluseventss.blogspot.com/p/embedd.html?=")) {
     window.location.href = "https://twitter.com/nodoapps";
 } else if (getID != "") {
     var playerInstance = jwplayer("player");
@@ -76,6 +77,7 @@ if (!window.location.href.startsWith("https://bilbojuan8.github.io/nodvix.github
     };
     xhr.send();
 }
+
             </script>
 </body>
 </html>
