@@ -1,0 +1,82 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vix</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.21.0/jwplayer.js"></script>
+    <script>
+        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+    </script>
+    <style type="text/css">
+      body {
+  background-color: black;
+}
+    </style>
+</head>
+<body style="padding: 0px; margin:0px;">
+    <div id="player"></div>
+    <script type="text/javascript">
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+            var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var getID = getParameterByName('id');
+
+        if (getID != "") {
+
+            var playerInstance = jwplayer("player");
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.codetabs.com/v1/proxy/?quest=https://fulldeportes.live/vixplus/' + getID + '.json');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    var sources = [];
+
+                    if (data.mpd_url && data.mpd_url !== "no disponible") {
+                        sources.push({
+                            "default": false,
+                            "file": data.mpd_url,
+                            "label": "0",
+                            "type": "mpd",
+                            "drm": {
+                                "widevine": {
+                                    "url": data.license_url
+                                }
+                            }
+                        });
+                    }
+
+                    if (data.m3u8_url) {
+                        sources.push({
+                            "default": true,
+                            "file": data.m3u8_url,
+                            "type": "hls"
+                        });
+                    }
+
+                    playerInstance.setup({
+                        playlist: [{
+                            "title": "Eventos gratis  | VIX+",
+                            "description": "Mirar VIX+ de manera gratuita",
+                            "image": data.img,
+                            "sources": sources
+                        }],
+                        width: "100%",
+                        height: "100%",
+                        aspectratio: "",
+                        autostart: false,
+                        cast: {},
+                    });
+                }
+            };
+            xhr.send();
+
+        }
+    </script>
+</body>
+</html>
