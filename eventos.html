@@ -125,7 +125,7 @@ function eventos() {
                     // Check if the URL is valid
                     if (obj['url'] !== undefined && obj['url'] !== "") {
                         // Generate the dynamic URL with the variable part after %2F
-                        var eventUrl = "bguang8.github.io/embed.html?=" + encodeURIComponent(obj['url'].split('=')[1]);
+                        var eventUrl = "embed.html?=" + encodeURIComponent(obj['url'].split('=')[1]);
 
                         // Replace the fixed part after %2F with the dynamic part
                         eventUrl = eventUrl.replace(/aHR0cHM6Ly90Y250My54eXovdml4aGxzLmh0bWw/g, "aHR0cHM6Ly9iaWxib2p1YW44LmdpdGh1Yi5pby9ub2R2aXguZ2l0aHViLmlvL3BsYXkuaHRtbD8");
