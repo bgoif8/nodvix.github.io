@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="theme-color" content="#ff0015">  
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdrenalinaGol | Twitter: @nodoapps</title>
+    <link href="https://i.imgur.com/PVuZ5Qm.png" rel="icon" type="image/x-icon" />
+
+<!-- LOAD LOCAL CSS -->
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/owl.carousel.min.css">
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/nice-select.css">
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/megamenu.css">
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/ionicons.css">
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="//futbolplaytvhd.com/css/style.css">
+
+   
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/colorstyle.css" id="theme">
+
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/responsive.css">
+
+<!-- Splide Slider CSS -->
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/splide.min.css">
+
+<link rel="stylesheet" href="https://futbolplaytvhd.com/css/jquery-eu-cookie-law-popup.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800&display=swap" rel="stylesheet">
+
+ 
+
+
+</head> 
+<body>
+ 
+
+
+    <!-- Start Header -->
+<header>
+  <!-- Start Navigation Area -->
+  <div class="main-menu"> 
+                    
+<link href="https://www.futbolplaytvhd.com/css/prueba.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script type="text/javascript" src="//teleenvivotv.com/hora.js?v"></script>
+<script> 
+ 
+</script>    
+<link href="https://www.futbolplaytvhd.com/css/STAR.css" rel="stylesheet">
+  <link rel="stylesheet" href="//futbolplaytvhd.com/css/stiloh.css">
+ 
+</script>    
+<link href="https://www.futbolplaytvhd.com/css/STAR.css"  
+                  
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+      <div class="col-3"> 
+        </div>        
+      </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <center>
+                <img src="https://uploads-ssl.webflow.com/5f91b330daa94f6a9582b301/648934046726206e6aaeb9a6_vix-plus-orange.png" alt="Vix+" width="150" height="100">
+                <h2>Elige el evento:</h2>
+        <div style="background-color: #FF0000; color: #FFFFFF; padding: 10px;">
+            <b>SE ACTIVA MINUTOS ANTES</b>
+        </div>
+            </center>
+<script>
+function eventos() {
+    // Add your website's primary domain and mobile domain here
+    var primaryDomain = "bguang8.github.io";
+
+    // Get the current domain from the window object
+    var currentDomain = window.location.hostname;
+    var isMobileVersion = window.location.href.indexOf("?m=1") !== -1;
+
+    // Check if the current domain matches your Blogger primary domain or the mobile domain
+    if (currentDomain !== primaryDomain && !isMobileVersion) {
+        console.log("Script execution prevented. The script is not running on your Blogger site.");
+        return;
+    }
+
+    // Rest of the existing script...
+    var x = Math.random().toString(36).substring(7);
+
+     $.ajax({
+        url: "https://corsproxy.io/?url=https://fulldeportes.live/agendavixplus.json?wkrfpn" + x,
+        type: "get",
+        success: function (arr) {
+            var content = '';
+
+            // Filter the array to exclude events with status "FINALIZADO"
+            var filteredArr = arr.filter(function (obj) {
+                return obj['fecha-evento'] !== "FINALIZADO";
+            });
+
+            for (var i = 0; i < filteredArr.length; i++) {
+                if (i % 4 == 0) {
+                    if (i != 0)
+                        content += '</div>';
+
+                    content += '<div class="w3-row-padding w3-padding-16 w3-center" id="copa">';
+                }
+
+                var obj = filteredArr[i];
+                var status;
+                var color;
+
+                // Check if the event is active ("EN VIVO")
+                if (obj['fecha-evento'] == "EN VIVO") {
+                    status = obj['fecha-evento'];
+                    color = "danger";
+
+                    // Check if the URL is valid
+                    if (obj['url'] !== undefined && obj['url'] !== "") {
+                        // Generate the dynamic URL with the variable part after %2F
+                        var eventUrl = "bguang8.github.io/embed.html?=" + encodeURIComponent(obj['url'].split('=')[1]);
+
+                        // Replace the fixed part after %2F with the dynamic part
+                        eventUrl = eventUrl.replace(/aHR0cHM6Ly90Y250My54eXovdml4aGxzLmh0bWw/g, "aHR0cHM6Ly9iaWxib2p1YW44LmdpdGh1Yi5pby9ub2R2aXguZ2l0aHViLmlvL3BsYXkuaHRtbD8");
+
+                        content += '<div class="w3-quarter"><a href="' + eventUrl + '"><img src="' + obj['img'] + '" alt="VIX+" style="width:100%" class="w3-hover-opacity"></a><a class="btn btn-block btn-' + color + '" href="' + eventUrl + '">' + status + '</a> <div class="w3-card-4"><p><b>' + obj['league'] + '</b></p><p>' + obj['title'] + '</p></div></div>';
+                    } else {
+                        // Invalid URL, show a message or handle accordingly
+                        content += '<div class="w3-quarter">' +
+                            '<img src="' + obj['img'] + '" alt="VIX+" style="width:100%" class="w3-hover-opacity">' +
+                            '<a class="btn btn-block btn-' + color + '">' + status + '</a>' +
+                            '<div class="w3-card-4"><p><b>' + obj['league'] + '</b></p><p>' + obj['title'] + '</p></div>' +
+                            '</div>';
+                    }
+                } else {
+                    // Event is not active, handle accordingly (display a "Coming Soon" message, etc.)
+                    status = "PROXIMAMENTE";
+                    color = "warning";
+                    content += '<div class="w3-quarter">' +
+                        '<img src="' + obj['img'] + '" alt="VIX+" style="width:100%" class="w3-hover-opacity">' +
+                        '<a class="btn btn-block btn-' + color + '">' + status + '</a>' +
+                        '<div class="w3-card-4"><p><b>' + obj['league'] + '</b></p><p>' + obj['title'] + '</p></div>' +
+                        '</div>';
+                }
+
+                if (i == filteredArr.length - 1)
+                    content += '</div>';
+            }
+
+            $("#eventos").html(content);
+
+            guardaHorario();
+            dT();
+        }
+    });
+}
+
+eventos();
+
+window.setInterval(function () {
+    // Reload the page to check for changes in event status
+    location.reload();
+}, 60000);
+
+
+</script>
+</section>
+<body>
+    
+    <div class="container">
+      <div id="eventos" class="card-container"></div>
+    </div>
+  
+    <footer class="mt-4 bg-slate-200 text-zinc-600 py-4 dark:bg-slate-700">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-800 dark:text-slate-300">AdrenalinaGol &copy; Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  
+
+ <script type="text/javascript" src="//teleenvivotv.com/hora.js?v"></script>
+  </body>
+  </html>
